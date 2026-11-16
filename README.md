@@ -1,5 +1,7 @@
 # QA Automation Portfolio
 
+[![Playwright Tests](https://github.com/Dan-pdlc/qa-automation-portfolio/actions/workflows/playwright.yml/badge.svg)](https://github.com/Dan-pdlc/qa-automation-portfolio/actions/workflows/playwright.yml)
+
 Automatización de pruebas web y de API con **Playwright (JavaScript)**, más una colección de **Postman**, escenarios **Gherkin** y reportes de defecto, usando sitios públicos creados para practicar testing.
 
 | Capa | Sitio bajo prueba | Pruebas |
@@ -23,6 +25,7 @@ Automatización de pruebas web y de API con **Playwright (JavaScript)**, más un
 | [`docs/escenarios.feature`](docs/escenarios.feature) | Los mismos casos en Gherkin (Dado-Cuando-Entonces), con etiquetas que enlazan a cada caso |
 | [`docs/defectos.md`](docs/defectos.md) | Defectos encontrados, con pasos para reproducir, resultado esperado y obtenido |
 | [`docs/plantilla-reporte-defecto.md`](docs/plantilla-reporte-defecto.md) | Plantilla y criterio de severidad |
+| [`docs/guia-de-practica.md`](docs/guia-de-practica.md) | Ejercicios por niveles y preguntas de entrevista sobre este repo |
 
 ## Estructura
 
@@ -31,6 +34,7 @@ pages/             Page Objects (LoginPage, InventarioPage, CheckoutPage)
 tests/web/         Pruebas E2E de la interfaz y defectos conocidos
 tests/api/         Pruebas de la API REST con Playwright
 postman/           Colección y entorno de Postman con los mismos casos de API
+karate/            Los mismos casos de API en Karate (Java, Maven)
 docs/              Casos de prueba, Gherkin y reportes de defecto
 .github/workflows  Ejecución automática en GitHub Actions
 ```
@@ -60,6 +64,17 @@ Desde la terminal, con Newman:
 ```bash
 npx newman run postman/restful-booker.postman_collection.json -e postman/restful-booker.postman_environment.json
 ```
+
+### Karate (API con Java)
+
+Los mismos casos de la API (TC-API-01 a TC-API-10) escritos en **Karate**, en la carpeta [`karate/`](karate). Requiere **JDK 17 o superior** y **Maven**.
+
+```bash
+cd karate
+mvn test
+```
+
+El reporte HTML queda en `karate/target/karate-reports/karate-summary.html`. Las pruebas son archivos `.feature` en `karate/src/test/java/booking/`, y los marcados con `@ignore` son ayudantes (obtener token, crear reserva) que usan los demás.
 
 ## Decisiones de diseño
 
